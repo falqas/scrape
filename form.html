@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <style type="text/css">
+        body {
+            font-family: Open Sans, Arial;
+            margin: 40px auto;
+            max-width: 650px;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #555;
+            padding: 0 10px
+        }
+        
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2
+        }
+    </style>
+</head>
+
+<body>
+    <form id="scrape" method="POST" action="/submit">
+        <fieldset>
+            <label for="url">URL:</label>
+            <input type="text" id="url" name="url" placeholder="Enter your URL to scrape" />
+            <br />
+            <label for="interval">Interval (in minutes):</label>
+            <input type="interval" id="interval" name="interval" placeholder="Enter minutes interval per scrape" />
+            <br />
+            <label for="email">Yahoo Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Yahoo email address" />
+            <br />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="pass" placeholder="Enter paswords"></textarea>
+            <br />
+            <input type="submit" value="Scrape" />
+        </fieldset>
+    </form>
+    <div id="status"></div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+    <script>
+        $("#scrape").submit(function(e) {
+
+            var url = "#";
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $("#scrape").serialize(),
+                success: function(data) {
+                    alert(data);
+                }
+            });
+
+            $('<p>Scraping...</p>').appendTo('#status');
+            e.preventDefault();
+            return false;
+
+        });
+    </script>
+</body>
+
+</html>
